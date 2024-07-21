@@ -1,0 +1,53 @@
+### Rutas para productos
+@api = http://localhost:3000/productos
+
+### Listar
+GET {{api}}
+
+### Listar por id
+GET {{api}}112
+
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "valor": "Valor 1",
+  "nombre": "Producto 1",
+  "fechaEmision": "2023-01-01",
+  "precio": 50,
+  "cantidad": 10,
+  "medidas": "10x10 cm",
+  "detalles": "Detalles del producto 1",
+  "pureza": 0.95,
+  "idTiempo": 100,
+  "idAcabado": 100,
+  "idPais": 100,
+  "idEmisor": 100,
+  "idMaterial": 100,
+  "idTipo": 100,
+  "idTransaccion": null
+}
+### Actualizar
+PUT {{api}}/102
+Content-Type: application/json
+
+{
+  "valor": "Valor 1",
+  "nombre": "Producto 1",
+  "fechaEmision": "2023-01-01",
+  "precio": 50,
+  "cantidad": 10,
+  "medidas": "10x10 cm",
+  "detalles": "Detalles del producto 1",
+  "pureza": 0.95,
+  "idTiempo": 100,
+  "idAcabado": 100,
+  "idPais": 100,
+  "idEmisor": 100,
+  "idMaterial": 100,
+  "idTipo": 100,
+  "idTransaccion": null
+}
+### Borrar 
+DELETE {{api}}/112
