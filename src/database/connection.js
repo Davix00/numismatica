@@ -9,7 +9,7 @@ const dbSettings = {
   server: "localhost",
   options: {
     encrypt: true, // para desarrollo local true
-    trustServerCertificate: true, // cambiarlo a false para produccion
+    trustServerCertificate: true, // cambiarlo a false para producción
   },
   pool: {
     max: 10,

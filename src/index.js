@@ -1,24 +1,33 @@
-import { config } from "dotenv";
 import express from "express";
-//import swaggerUI from "swagger-ui-express"
-//import swaggerJsDoc from "swagger-jsdoc"
+import apicache from "apicache";
+import cors from "cors";
+import { config } from "dotenv";
+import { swaggerDocs } from "./swagger.js";
 
-//imports from routes
+//importaciones de las rutas que creemos
 import productRoutes from "./routes/products.routes.js" 
 
-//enviroment varidbles
+//Para inicializar las variables de entorno
 config();
 
-//settings
+//configuraciones del backend
 const app = express();
+const cache = apicache.middleware;
+
 const port = process.env.PORT || 9000;
 app.use(express.json());
+app.use(cache("2 minutes"));
 
-//use routes
+//uso de las rutas
 app.use(productRoutes);
 
 //middleware
-//app.use("/api-doc",swaggerUI.setup(swaggerJsDoc()));
+app.use(express.urlencoded({ extended: false }))
+app.use(cors())
 
-//sever listening
-app.listen(port, () => console.log("Servidor eschuchando por el puerto:", port));
+//ejecución del servidor en le puerto
+app.listen(port, () => {
+    console.log("🚀 Servidor ejecutándose en el puerto", port);
+    swaggerDocs(app, port);
+  }
+);
