@@ -5,7 +5,7 @@
 GET {{api}}
 
 ### Listar por id
-GET {{api}}112
+GET {{api}}104
 
 ### Crear
 POST {{api}}
