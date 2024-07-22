@@ -5,7 +5,7 @@
 GET {{api}}
 
 ### Listar por id
-GET {{api}}104
+GET {{api}}106
 
 ### Crear
 POST {{api}}
@@ -29,7 +29,7 @@ Content-Type: application/json
   "idTransaccion": null
 }
 ### Actualizar
-PUT {{api}}/102
+PUT {{api}}102
 Content-Type: application/json
 
 {
@@ -50,4 +50,4 @@ Content-Type: application/json
   "idTransaccion": null
 }
 ### Borrar 
-DELETE {{api}}/112
+DELETE {{api}}106

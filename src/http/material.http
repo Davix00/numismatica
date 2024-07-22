@@ -1,0 +1,23 @@
+### Rutas para los materiales
+@api = http://localhost:3000/materiales
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}104
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Material 4"
+}
+### Actualizar
+PUT {{api}}104
+Content-Type: application/json
+
+{
+  "nombre": "Material 7"
+}
+### Borrar 
+DELETE {{api}}100

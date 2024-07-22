@@ -1,15 +1,17 @@
 import { Router } from "express";
-import { getProduct, getProducts, createProduct, updateProduct, deleteProduct } from "../controllers/products.controllers.js";
+import apicache from "apicache";
+import { getEmisor, getEmisores, createEmisor, updateEmisor, deleteEmisor } from "../controllers/emisor.controller.js";
 
 
 const router = Router();
+const cache = apicache.middleware;
 
 /**
  * @openapi
- * /productos:
+ * /emisores:
  *   get:
  *     tags:
- *       - Productos
+ *       - Emisores
  *     responses:
  *       200:
  *         description: OK
@@ -26,11 +28,10 @@ const router = Router();
  *                   items: 
  *                     type: object
  */
-router.get('/productos', getProducts);
-
-router.get('/productos:id', getProduct);
-router.post('/productos', createProduct);
-router.put('/productos/:id', updateProduct);
-router.delete('/productos/:id', deleteProduct);
+router.get('/emisores', cache("2 minutes"), getEmisores);
+router.get('/emisores:id', getEmisor);
+router.post('/emisores', createEmisor);
+router.put('/emisores:id', updateEmisor);
+router.delete('/emisores:id', deleteEmisor);
 
 export default router;

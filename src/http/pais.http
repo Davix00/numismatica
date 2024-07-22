@@ -1,0 +1,26 @@
+### Rutas para los paises
+
+@api = http://localhost:3000/paises
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}102
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Pais  4",
+  "idContinente": 106
+}
+### Actualizar
+PUT {{api}}102
+Content-Type: application/json
+
+{
+  "nombre": "Pais 7",
+  "idContinente": 100
+}
+### Borrar 
+DELETE {{api}}102

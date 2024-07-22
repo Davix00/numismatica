@@ -49,7 +49,6 @@ export const createAcabado = async (req, res) => {
 
 export const updateAcabado = async (req, res) => {
   try {
-    console.log(req.body);
     const { id } = req.params;
     const { nombre, descripcion } = req.body;
     const pool = await getConnection();
@@ -75,10 +74,10 @@ export const deleteAcabado = async (req, res) => {
     .query("DELETE FROM acabado WHERE idAcabado = @id");
 
     if(result.rowsAffected[0] === 0){
-      res.status(404).json({ message: "Producto no encontrado." })
+      res.status(404).json({ message: "Acabado no encontrado." })
     } else {
       res.status(200).json({
-        message: "Producto eliminado",
+        message: "Acabado eliminado",
       })
     }
   } catch (error) {

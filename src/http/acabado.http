@@ -1,0 +1,26 @@
+### Rutas para los acabados
+
+@api = http://localhost:3000/acabados
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}110
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Producto 1",
+  "descripcion": "Descripcion acabado 1"
+}
+### Actualizar
+PUT {{api}}110
+Content-Type: application/json
+
+{
+  "nombre": "Producto 123",
+  "descripcion": "Descripcion acabado 123"
+}
+### Borrar 
+DELETE {{api}}100

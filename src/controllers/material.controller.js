@@ -3,7 +3,7 @@ import  { getConnection, sql } from "../database/connection.js"
 export const getMateriales = async (req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query("SELECT * FROM materiales");
+    const result = await pool.request().query("SELECT * FROM material");
     res.status(200).json(result.recordset);
   } catch (error) {
     res.status(500).send(error.message);    
@@ -47,7 +47,6 @@ export const createMaterial = async (req, res) => {
 
 export const updateMaterial = async (req, res) => {
   try {
-    console.log(req.body);
     const { id } = req.params;
     const { nombre } = req.body;
     const pool = await getConnection();

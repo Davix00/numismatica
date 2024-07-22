@@ -49,7 +49,6 @@ export const createEmisor = async (req, res) => {
 
 export const updateEmisor = async (req, res) => {
   try {
-    console.log(req.body);
     const { id } = req.params;
     const { nombre, descripcion } = req.body;
     const pool = await getConnection();
@@ -66,7 +65,7 @@ export const updateEmisor = async (req, res) => {
   }
 }
 
-export const deleteAcabado = async (req, res) => {
+export const deleteEmisor = async (req, res) => {
   try {
     const { id } = req.params;
     const pool = await getConnection();

@@ -61,7 +61,6 @@ export const createProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   try {
-    console.log(req.body);
     const { id } = req.params;
     const { valor, nombre, fechaEmision, precio, cantidad, medidas, detalles, pureza, idTiempo, idAcabado, idPais, idEmisor, idMaterial, idTipo } = req.body;
     const pool = await getConnection();
@@ -97,7 +96,6 @@ export const deleteProduct = async (req, res) => {
     const result = await pool.request()
       .input("id", id)
     .query("DELETE FROM producto WHERE idProducto = @id");
-
     if(result.rowsAffected[0] === 0){
       res.status(404).json({ message: "Producto no encontrado." })
     } else {

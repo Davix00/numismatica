@@ -1,0 +1,26 @@
+### Rutas para los tiempos
+
+@api = http://localhost:3000/tiempos
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}100
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Tiempo 4",
+  "descripcion": "Descripcion del tiempo 4"
+}
+### Actualizar
+PUT {{api}}100
+Content-Type: application/json
+
+{
+  "nombre": "Tiempo 123",
+  "descripcion": "Descripcion del tiempo 123"
+}
+### Borrar 
+DELETE {{api}}100

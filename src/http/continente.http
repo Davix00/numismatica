@@ -1,0 +1,23 @@
+### Rutas para los continentes
+@api = http://localhost:3000/continentes
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}104
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Continente 4"
+}
+### Actualizar
+PUT {{api}}104
+Content-Type: application/json
+
+{
+  "nombre": "Continente 5"
+}
+### Borrar 
+DELETE {{api}}100

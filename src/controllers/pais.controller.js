@@ -49,7 +49,6 @@ export const createPais = async (req, res) => {
 
 export const updatePais= async (req, res) => {
   try {
-    console.log(req.body);
     const { id } = req.params;
     const { nombre, idContinente } = req.body;
     const pool = await getConnection();
@@ -75,10 +74,10 @@ export const deletePais = async (req, res) => {
     .query("DELETE FROM pais WHERE idPais = @id");
 
     if(result.rowsAffected[0] === 0){
-      res.status(404).json({ message: "Producto no encontrado." })
+      res.status(404).json({ message: "Pais no encontrado." })
     } else {
       res.status(200).json({
-        message: "Producto eliminado",
+        message: "Pais eliminado",
       })
     }
   } catch (error) {

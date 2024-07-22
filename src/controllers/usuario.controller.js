@@ -1,25 +1,25 @@
 import  { getConnection, sql } from "../database/connection.js"
 
-export const getContinentes = async (req, res) => {
+export const getUsusarios = async (req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query("SELECT * FROM continente");
+    const result = await pool.request().query("SELECT * FROM usuario");
     res.status(200).json(result.recordset);
   } catch (error) {
     res.status(500).send(error.message);    
   }
 }
 
-export const getContinente = async (req, res) => {
+export const getUsuario = async (req, res) => {
   try {
     const { id } = req.params;
     const pool = await getConnection();
     const result = await pool.request()
       .input("id", id )
-    .query("SELECT * FROM continente WHERE idContinente = @id");
+    .query("SELECT * FROM tipo WHERE idUsuario = @id");
     
     if(result.rowsAffected[0] === 0) {
-      res.status(404).json({message: "Continente no encontrado"})
+      res.status(404).json({message: "Tipo no encontrado"})
     } else {
       res.status(200).json(result.recordset[0]);
     }  
@@ -28,14 +28,17 @@ export const getContinente = async (req, res) => {
   }
 }
 
-export const createContinente = async (req, res) => {
+export const createUsurio = async (req, res) => {
   try {
-    const { nombre } = req.body;
+    const { nombre, apellido, correo, contra } = req.body;
 
     const pool = await getConnection();
     const result = await pool.request()
       .input("nombre", sql.VarChar, nombre)
-    .query("INSERT INTO continente (nombre) VALUES (@nombre); SELECT SCOPE_IDENTITY() AS id;")
+      .input("apellido", sql.VarChar, apellido)
+      .input("correo", sql.VarChar, correo)
+      .input("contra", sql.VarChar, contra)
+    .query("INSERT INTO usuario (nombre, apellido, correo, contra) VALUES (@nombre), @apellido, @correo, @contra; SELECT SCOPE_IDENTITY() AS id;")
     res.status(200).json({
       message: "success",
       id: result.recordset[0].id,
@@ -45,15 +48,18 @@ export const createContinente = async (req, res) => {
   }
 }
 
-export const updateContinente = async (req, res) => {
+export const updateUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre } = req.body;
+    const { nombre, apellido, correo, contra } = req.body;
     const pool = await getConnection();
     await pool.request()
       .input("id", id ) 
       .input("nombre", sql.VarChar, nombre)
-    .query("UPDATE continente SET nombre = @nombre WHERE idContinente = @id;")
+      .input("apellido", sql.VarChar, nombre)
+      .input("correo", sql.VarChar, nombre)
+      .input("contra", sql.VarChar, nombre)
+    .query("UPDATE usuario SET nombre = @nombre, apellido = @apellido, correo = @correo, contra = @contra WHERE idUsuario = @id;")
     res.status(200).json({
       message: "success",
     })
@@ -62,19 +68,19 @@ export const updateContinente = async (req, res) => {
   }
 }
 
-export const deleteContinente = async (req, res) => {
+export const deleteUsuario = async (req, res) => {
   try {
     const { id } = req.params;
     const pool = await getConnection();
     const result = await pool.request()
       .input("id", id)
-    .query("DELETE FROM continente WHERE idContinente = @id");
+    .query("DELETE FROM usuario WHERE idUsuario = @id");
 
     if(result.rowsAffected[0] === 0){
-      res.status(404).json({ message: "Continente no encontrado." })
+      res.status(404).json({ message: "Usuario no encontrado." })
     } else {
       res.status(200).json({
-        message: "Continente eliminado",
+        message: "Usuario eliminado",
       })
     }
   } catch (error) {

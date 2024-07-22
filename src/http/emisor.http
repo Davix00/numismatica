@@ -1,0 +1,26 @@
+### Rutas para los emisores
+
+@api = http://localhost:3000/emisores
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}100
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Emisor  4",
+  "descripcion": "Descripcion del emisor 4"
+}
+### Actualizar
+PUT {{api}}100
+Content-Type: application/json
+
+{
+  "nombre": "Emisor 123",
+  "descripcion": "Descripcion emisor 123"
+}
+### Borrar 
+DELETE {{api}}100

@@ -1,25 +1,34 @@
 import express from "express";
-import apicache from "apicache";
 import cors from "cors";
 import { config } from "dotenv";
 import { swaggerDocs } from "./swagger.js";
 
 //importaciones de las rutas que creemos
-import productRoutes from "./routes/products.routes.js" 
+import productoRoutes from "./routes/producto.routes.js" ;
+import acabadoRoutes from "./routes/acabado.routes.js";
+import continenteRoutes from "./routes/continente.routes.js";
+import emisorRoutes from "./routes/emisor.routes.js";
+import materialRoutes from "./routes/material.routes.js";
+import paisRoutes from "./routes/pais.routes.js";
+import tiempoRoutes from "./routes/tiempo.routes.js";
+
 
 //Para inicializar las variables de entorno
 config();
 
 //configuraciones del backend
 const app = express();
-const cache = apicache.middleware;
-
 const port = process.env.PORT || 9000;
 app.use(express.json());
-app.use(cache("2 minutes"));
 
 //uso de las rutas
-app.use(productRoutes);
+app.use(productoRoutes);
+app.use(acabadoRoutes);
+app.use(continenteRoutes);
+app.use(emisorRoutes);
+app.use(materialRoutes);
+app.use(paisRoutes);
+app.use(tiempoRoutes);
 
 //middleware
 app.use(express.urlencoded({ extended: false }))
