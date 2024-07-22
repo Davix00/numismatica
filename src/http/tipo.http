@@ -1,0 +1,23 @@
+### Rutas para los tipos
+@api = http://localhost:3000/tipos
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}106
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Tipo 4"
+}
+### Actualizar
+PUT {{api}}100
+Content-Type: application/json
+
+{
+  "nombre": "Tipo 132"
+}
+### Borrar 
+DELETE {{api}}106

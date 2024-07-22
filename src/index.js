@@ -11,7 +11,9 @@ import emisorRoutes from "./routes/emisor.routes.js";
 import materialRoutes from "./routes/material.routes.js";
 import paisRoutes from "./routes/pais.routes.js";
 import tiempoRoutes from "./routes/tiempo.routes.js";
-
+import tipoRoutes from "./routes/tipo.routes.js";
+import usuarioRoutes from "./routes/usuario.routes.js";
+import rolRoutes from "./routes/rol.routes.js";
 
 //Para inicializar las variables de entorno
 config();
@@ -29,6 +31,9 @@ app.use(emisorRoutes);
 app.use(materialRoutes);
 app.use(paisRoutes);
 app.use(tiempoRoutes);
+app.use(tipoRoutes);
+app.use(usuarioRoutes);
+app.use(rolRoutes);
 
 //middleware
 app.use(express.urlencoded({ extended: false }))

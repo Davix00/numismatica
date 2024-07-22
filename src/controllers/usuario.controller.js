@@ -1,6 +1,6 @@
 import  { getConnection, sql } from "../database/connection.js"
 
-export const getUsusarios = async (req, res) => {
+export const getUsuarios = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool.request().query("SELECT * FROM usuario");
@@ -16,7 +16,7 @@ export const getUsuario = async (req, res) => {
     const pool = await getConnection();
     const result = await pool.request()
       .input("id", id )
-    .query("SELECT * FROM tipo WHERE idUsuario = @id");
+    .query("SELECT * FROM usuario WHERE idUsuario = @id");
     
     if(result.rowsAffected[0] === 0) {
       res.status(404).json({message: "Tipo no encontrado"})
@@ -28,9 +28,9 @@ export const getUsuario = async (req, res) => {
   }
 }
 
-export const createUsurio = async (req, res) => {
+export const createUsuario = async (req, res) => {
   try {
-    const { nombre, apellido, correo, contra } = req.body;
+    const { nombre, apellido, correo, contra, idRol } = req.body;
 
     const pool = await getConnection();
     const result = await pool.request()
@@ -38,7 +38,8 @@ export const createUsurio = async (req, res) => {
       .input("apellido", sql.VarChar, apellido)
       .input("correo", sql.VarChar, correo)
       .input("contra", sql.VarChar, contra)
-    .query("INSERT INTO usuario (nombre, apellido, correo, contra) VALUES (@nombre), @apellido, @correo, @contra; SELECT SCOPE_IDENTITY() AS id;")
+      .input("idRol", sql.Int, idRol)
+    .query("INSERT INTO usuario (nombre, apellido, correo, contra, idRol) VALUES (@nombre, @apellido, @correo, @contra, @idRol); SELECT SCOPE_IDENTITY() AS id;")
     res.status(200).json({
       message: "success",
       id: result.recordset[0].id,
@@ -51,15 +52,17 @@ export const createUsurio = async (req, res) => {
 export const updateUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, apellido, correo, contra } = req.body;
+    const { nombre, apellido, correo, contra, idRol } = req.body;
+
     const pool = await getConnection();
     await pool.request()
       .input("id", id ) 
       .input("nombre", sql.VarChar, nombre)
-      .input("apellido", sql.VarChar, nombre)
-      .input("correo", sql.VarChar, nombre)
-      .input("contra", sql.VarChar, nombre)
-    .query("UPDATE usuario SET nombre = @nombre, apellido = @apellido, correo = @correo, contra = @contra WHERE idUsuario = @id;")
+      .input("apellido", sql.VarChar, apellido)
+      .input("correo", sql.VarChar, correo)
+      .input("contra", sql.VarChar, contra)
+      .input("idRol", sql.VarChar, idRol)
+    .query("UPDATE usuario SET nombre = @nombre, apellido = @apellido, correo = @correo, contra = @contra, idRol = @idRol WHERE idUsuario = @id;")
     res.status(200).json({
       message: "success",
     })
@@ -71,6 +74,7 @@ export const updateUsuario = async (req, res) => {
 export const deleteUsuario = async (req, res) => {
   try {
     const { id } = req.params;
+    
     const pool = await getConnection();
     const result = await pool.request()
       .input("id", id)

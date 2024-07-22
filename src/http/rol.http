@@ -1,0 +1,26 @@
+### Rutas para los roles
+
+@api = http://localhost:3000/roles
+
+### Listar todos
+GET {{api}}
+### Listar por id
+GET {{api}}104
+### Crear
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Vendedor",
+  "descripcion": "Tiene permitido subir produtos."
+}
+### Actualizar
+PUT {{api}}104
+Content-Type: application/json
+
+{
+  "nombre": "Vendedor  123",
+  "descripcion": "Descripcion acabado 123"
+}
+### Borrar 
+DELETE {{api}}104

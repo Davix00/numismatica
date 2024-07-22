@@ -11,7 +11,7 @@ const swaggerSpec = {
     description: "API para gestión de productos y las ventas.",
   },
  },
- apis: ["./src/routes/*routes.js"]
+ apis: ["./src/routes/*.routes.js"]
 }
 
 //función que configura la documentación
