@@ -50,7 +50,7 @@ export const createProduct = async (req, res) => {
       .input("idMaterial", sql.Int, idMaterial)
       .input("idTipo", sql.Int, idTipo)
     .query("INSERT INTO producto (valor, nombre, fechaEmision, precio, cantidad, medidas, detalles, pureza, idTiempo, idAcabado, idPais, idEmisor, idMaterial, idTipo) VALUES (@valor, @nombre, @fechaEmision, @precio, @cantidad, @medidas, @detalles, @pureza, @idTiempo, @idAcabado, @idPais, @idEmisor, @idMaterial, @idTipo); SELECT SCOPE_IDENTITY() AS id;")
-    res.status(200).json({
+    res.status(201).json({
       message: "success",
       id: result.recordset[0].id,
     })

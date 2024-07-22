@@ -38,8 +38,7 @@ export const createAcabado = async (req, res) => {
       .input("nombre", sql.VarChar, nombre)
       .input("descripcion", sql.Text, descripcion)
     .query("INSERT INTO acabado (nombre, descripcion) VALUES (@nombre, @descripcion); SELECT SCOPE_IDENTITY() AS id;")
-    res.status(200).json({
-      message: "success",
+    res.status(201).json({
       id: result.recordset[0].id,
     })
   } catch (error) {

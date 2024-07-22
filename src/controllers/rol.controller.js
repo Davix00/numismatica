@@ -38,7 +38,7 @@ export const createRol = async (req, res) => {
       .input("nombre", sql.VarChar, nombre)
       .input("descripcion", sql.Text, descripcion)
     .query("INSERT INTO rol (nombre, descripcion) VALUES (@nombre, @descripcion); SELECT SCOPE_IDENTITY() AS id;")
-    res.status(200).json({
+    res.status(201).json({
       message: "success",
       id: result.recordset[0].id,
     })

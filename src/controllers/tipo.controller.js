@@ -36,7 +36,7 @@ export const createTipo = async (req, res) => {
     const result = await pool.request()
       .input("nombre", sql.VarChar, nombre)
     .query("INSERT INTO tipo (nombre) VALUES (@nombre); SELECT SCOPE_IDENTITY() AS id;")
-    res.status(200).json({
+    res.status(201).json({
       message: "success",
       id: result.recordset[0].id,
     })

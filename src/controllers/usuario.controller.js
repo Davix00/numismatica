@@ -40,7 +40,7 @@ export const createUsuario = async (req, res) => {
       .input("contra", sql.VarChar, contra)
       .input("idRol", sql.Int, idRol)
     .query("INSERT INTO usuario (nombre, apellido, correo, contra, idRol) VALUES (@nombre, @apellido, @correo, @contra, @idRol); SELECT SCOPE_IDENTITY() AS id;")
-    res.status(200).json({
+    res.status(201).json({
       message: "success",
       id: result.recordset[0].id,
     })
