@@ -130,13 +130,7 @@ router.get('/acabados:id', getAcabado);
  *                   properties:
  *                     idAcabado:
  *                       type: int
- *                       example: 67890
- *                     nombre:
- *                       type: string
- *                       example: "Acabado Brillante"
- *                     descripcion:
- *                       type: string
- *                       example: "Un acabado brillante para superficies."
+ *                       example: 120
  */
 router.post('/acabados', createAcabado);
 
@@ -163,10 +157,10 @@ router.post('/acabados', createAcabado);
  *             properties:
  *               nombre:
  *                 type: string
- *                 example: "Acabado Satinado"
+ *                 example: "Mate"
  *               descripcion:
  *                 type: string
- *                 example: "Un acabado satinado para superficies."
+ *                 example: "No brilla ni refleja la luz"
  *     responses:
  *       200:
  *         description: Acabado actualizado exitosamente
@@ -184,6 +178,32 @@ router.post('/acabados', createAcabado);
  *                     message:
  *                       type: string
  *                       example: "success"
+ *       400:
+ *         description: Solicitud incorrecta debido a datos no válidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: Bad Request
+ *                 message:
+ *                   type: string
+ *                   example: "Los datos proporcionados no son válidos."
+ *       500:
+ *         description: Error interno del servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: Internal Server Error
+ *                 message:
+ *                   type: string
+ *                   example: "Ocurrió un error inesperado."
  */
 router.put('/acabados:id', updateAcabado);
 

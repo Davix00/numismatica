@@ -8,7 +8,7 @@ const swaggerSpec = {
    info: {
     title: "Numismática API",
     version: "1.0.0",
-    description: "API para gestión de productos y las ventas.",
+    description: "API para gestión el ingreso y control de ventas, productos y usuarios.",
   },
  },
  apis: ["./src/routes/*.routes.js"]
