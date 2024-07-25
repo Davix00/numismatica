@@ -299,7 +299,7 @@ router.post('/productos', createProduct);
 
  /** 
  * @openapi
- * /productos/{id}:
+ * /productos{id}:
  *   put:
  *     tags:
  *       - Productos
